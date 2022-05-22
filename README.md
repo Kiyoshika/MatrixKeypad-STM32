@@ -27,28 +27,61 @@ keypad kp;
 void EXTI2_IRQHandler(void) // COLUMN 1
 {
 	if (keypad_row_pressed(&kp, 1))
-		GPIOA->ODR ^= (1 << 12); // (1, 1) pressed
+		// row 1, column 1 pressed
+	else if (keypad_row_pressed(&kp, 2))
+		// row 2, column 1 pressed
+	else if (keypad_row_pressed(&kp, 3))
+		// row 3, column 1 pressed
+	else if (keypad_row_pressed(&kp, 4))
+		// row 4, column 1 pressed
+
 	EXTI->PR |= (1 << 2);
 }
 
 void EXTI3_IRQHandler(void) // COLUMN 2
 {
-	if (keypad_row_pressed(&kp, 2))
-		GPIOA->ODR ^= (1 << 12); // (2, 2) pressed
+	if (keypad_row_pressed(&kp, 1))
+		// row 1, column 2 pressed
+	else if (keypad_row_pressed(&kp, 2))
+		// row 2, column 2 pressed
+	else if (keypad_row_pressed(&kp, 3))
+		// row 3, column 2 pressed
+	else if (keypad_row_pressed(&kp, 4))
+		// row 4, column 2 pressed
+
 	EXTI->PR |= (1 << 3);
 }
 
 void EXTI4_IRQHandler(void) // COLUMN 3
 {
-	if (keypad_row_pressed(&kp, 3))
-		GPIOA->ODR ^= (1 << 12); // (3, 3) pressed
+	if (keypad_row_pressed(&kp, 1))
+		// row 1, column 3 pressed
+	else if (keypad_row_pressed(&kp, 2))
+		// row 2, column 3 pressed
+	else if (keypad_row_pressed(&kp, 3))
+		// row 3, column 3 pressed
+	else if (keypad_row_pressed(&kp, 4))
+		// row 4, column 3 pressed
+
 	EXTI->PR |= (1 << 4);
 }
 
+// ****WARNING***: if you have multiple buttons connected a multi-line interrupt like below
+// then you must do some extra work to figure out which column button was pressed.
+// You could probably use similar logic to keypad_row_pressed if you peek into the header.
+// In my case I only have a single button connected to this interrupt line so I don't have to worry about it here.
+
 void EXTI9_5_IRQHandler(void) // COLUMN 4
 {
-	if (keypad_row_pressed(&kp, 4))
-		GPIOA->ODR ^= (1 << 12); // (4, 4) pressed
+	if (keypad_row_pressed(&kp, 1))
+		// row 1, column 4 pressed
+	else if (keypad_row_pressed(&kp, 2))
+		// row 2, column 4 pressed
+	else if (keypad_row_pressed(&kp, 3))
+		// row 3, column 4 pressed
+	else if (keypad_row_pressed(&kp, 4))
+		// row 4, column 4 pressed
+
 	EXTI->PR |= (1 << 5);
 }
 
